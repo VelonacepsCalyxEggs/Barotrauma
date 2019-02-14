@@ -470,10 +470,10 @@ namespace Barotrauma.Tutorials
                 case ContentTypes.None:
                     break;
                 case ContentTypes.Video:
-                    string path = activeSegment.Content.GetAttributeString("path", "");
-                    if (path != "")
+                    string fileName = activeSegment.Content.GetAttributeString("file", "");
+                    if (fileName != "")
                     {
-                        videoPlayer.LoadContent(playableContentPath + path, activeSegment.Content, activeSegment.Name, true, true, CurrentSegmentStopCallback);
+                        videoPlayer.LoadContent(playableContentPath + fileName, activeSegment.Content, activeSegment.Name, true, true, CurrentSegmentStopCallback);
                     }
                     else
                     {

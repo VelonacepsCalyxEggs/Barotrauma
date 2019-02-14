@@ -121,6 +121,7 @@
     <Compile Include="Source\GUI\RectTransform.cs" />
     <Compile Include="Source\GUI\SpriteSheetPlayer.cs" />
     <Compile Include="Source\GUI\UISprite.cs" />
+    <Compile Include="Source\GUI\VideoPlayer.cs" />
     <Compile Include="Source\GUI\Widget.cs" />
     <Compile Include="Source\Items\Components\ElectricalDischarger.cs" />
     <Compile Include="Source\Items\Components\LevelResource.cs" />

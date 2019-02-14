@@ -185,7 +185,7 @@ namespace Barotrauma
 
             try
             {
-                video = new Video(GameMain.Instance.GraphicsDevice, GameMain.SoundManager, "Content/splashscreen.mp4", (uint)resolution.X, (uint)resolution.Y);
+                video = new Video(GameMain.Instance.GraphicsDevice, GameMain.SoundManager, contentPath, (uint)resolution.X, (uint)resolution.Y);
             }
             catch (Exception e)
             {
