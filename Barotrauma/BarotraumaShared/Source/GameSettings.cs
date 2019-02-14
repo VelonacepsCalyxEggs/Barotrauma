@@ -926,7 +926,7 @@ namespace Barotrauma
                 new XAttribute("musicvolume", musicVolume),
                 new XAttribute("soundvolume", soundVolume),
                 new XAttribute("voicesetting", VoiceSetting),
-                new XAttribute("voicecapturedevice", VoiceCaptureDevice),
+                new XAttribute("voicecapturedevice", VoiceCaptureDevice != null ? VoiceCaptureDevice : ""),
                 new XAttribute("noisegatethreshold", NoiseGateThreshold));
 
             XElement gSettings = doc.Root.Element("graphicssettings");

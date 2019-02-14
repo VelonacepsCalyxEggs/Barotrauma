@@ -19,6 +19,8 @@ namespace Barotrauma.Tutorials
         private List<TutorialSegment> segments;
 
         private SpriteSheetPlayer spriteSheetPlayer;
+        private VideoPlayer videoPlayer;
+
         private Steering navConsole;
         private Reactor reactor;
         private Sonar sonar;
@@ -82,6 +84,7 @@ namespace Barotrauma.Tutorials
 
             base.Initialize();
             spriteSheetPlayer = new SpriteSheetPlayer();
+            videoPlayer = new VideoPlayer();
             characterTimeOnSonar = new List<Pair<Character, float>>();
 
             for (int i = 0; i < segments.Count; i++)
@@ -210,6 +213,8 @@ namespace Barotrauma.Tutorials
             started = ContentRunning = Initialized = false;
             spriteSheetPlayer.Remove();
             spriteSheetPlayer = null;
+            videoPlayer.Remove();
+            videoPlayer = null;
             characterTimeOnSonar = null;
         }
 
@@ -219,6 +224,10 @@ namespace Barotrauma.Tutorials
             if (spriteSheetPlayer != null)
             {
                 spriteSheetPlayer.AddToGUIUpdateList();
+            }
+            if (videoPlayer != null)
+            {
+                videoPlayer.AddToGUIUpdateList();
             }
         }
 
@@ -461,7 +470,15 @@ namespace Barotrauma.Tutorials
                 case ContentTypes.None:
                     break;
                 case ContentTypes.Video:
-                    spriteSheetPlayer.LoadContent(playableContentPath, activeSegment.Content, activeSegment.Name, true, true, CurrentSegmentStopCallback);
+                    string path = activeSegment.Content.GetAttributeString("path", "");
+                    if (path != "")
+                    {
+                        videoPlayer.LoadContent(playableContentPath + path, activeSegment.Content, activeSegment.Name, true, true, CurrentSegmentStopCallback);
+                    }
+                    else
+                    {
+                        spriteSheetPlayer.LoadContent(playableContentPath, activeSegment.Content, activeSegment.Name, true, true, CurrentSegmentStopCallback);
+                    }
                     break;
                 case ContentTypes.Text:
                     infoBox = CreateInfoFrame(TextManager.Get(activeSegment.Name), TextManager.Get(activeSegment.Content.GetAttributeString("tag", ""), false, args),
